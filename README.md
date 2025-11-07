@@ -31,6 +31,12 @@ The run-script.sh file removes docker container
 
 ---
 
+## ▶️ Image from project
+
+<img src="photo.png">
+
+---
+
 ## ▶️ How to Run
 
 Build and start the container:
