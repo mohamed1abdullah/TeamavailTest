@@ -1,0 +1,41 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted   
+
+    steps:
+      #  Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Build Docker image
+      - name: Build Docker images
+        run:  docker build -t teamtestvail .
+
+      #  Set up kubectl
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      #  Use Minikube context
+      - name: Use minikube context
+        run: kubectl config use-context minikube
+
+      #  stop container 
+      - name: start container
+        run: ./stop-docker.sh
+
+      #  remove container 
+      - name: start container
+        run: ./rm-docker.sh
+
+      #  Start container 
+      - name: start container
+        run: ./run-docker.sh
