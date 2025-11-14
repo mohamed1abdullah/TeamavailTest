@@ -19,12 +19,12 @@ jobs:
         run:  docker build -t teamtestvail .
 
       #  stop container 
-      - name: start container
-        run: ./stop-docker.sh
+      - name: stop container
+        run: ./stop-docker.sh || true
 
       #  remove container 
-      - name: start container
-        run: ./rm-docker.sh
+      - name: remove container
+        run: ./rm-docker.sh || true
 
       #  Start container 
       - name: start container
